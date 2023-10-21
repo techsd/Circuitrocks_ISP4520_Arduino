@@ -33,3 +33,63 @@ nrfutil_boot.program.burn_pattern={program.cmd} --verbose dfu serial -pkg "{boot
 nrfutil_boot.program.params.quiet=
 nrfutil_boot.program.params.verbose=
 nrfutil_boot.program.pattern=echo Please select <J-Link for Bluefruit nRF52> as programmer
+
+#**********************************************
+# Black Magic Probe
+#**********************************************
+bmp_boot.name=Black Magic Probe for nRF52
+bmp_boot.program.tool=bootburn
+bmp_boot.program.cmd=arm-none-eabi-gdb
+bmp_boot.program.cmd.windows={runtime.tools.arm-none-eabi-gcc.path}/bin/arm-none-eabi-gdb.exe
+bmp_boot.program.cmd.macosx={runtime.tools.arm-none-eabi-gcc.path}/bin/arm-none-eabi-gdb
+
+# Burn bootloader pattern
+bmp_boot.program.burn_pattern.windows={program.cmd}  "{bootloader.file}.hex" -quiet --batch -ex "target extended-remote \\.\{serial.port}" -ex "mon tpwr enable" -ex "mon swdp_scan" -ex "att 1"  ex "echo \nFlashing\n" -ex "load  " -ex "echo \nVerifying\n" -ex "compare-sections" -ex "mon hard_srst" -ex "detach" -ex "echo \nBootloader upload complete!\n" -ex "quit"
+bmp_boot.program.burn_pattern.macosx={program.cmd}  "{bootloader.file}.hex" -quiet --batch -ex "target extended-remote {serial.port}" -ex "mon tpwr enable" -ex "mon swdp_scan" -ex "att 1" -ex "echo \nFlashing\n" -ex "load  " -ex "echo \nVerifying\n" -ex "compare-sections" -ex "mon hard_srst" -ex "detach" -ex "echo \nBootloader upload complete!\n" -ex "quit"
+
+
+# Remind user to select Jlink when used to upload sketch
+bmp_boot.program.params.quiet=
+bmp_boot.program.params.verbose=
+bmp_boot.program.pattern=echo Please select <Black Magic Probe for Bluefruit nRF52> as programmer
+
+
+#**********************************************
+# Black Magic Probe
+#**********************************************
+bmp_erase.name=Black Magic Probe - Unlock+Erase Only
+bmp_erase.program.tool=bootburn
+bmp_erase.program.cmd=arm-none-eabi-gdb
+bmp_erase.program.cmd.windows={runtime.tools.arm-none-eabi-gcc.path}/bin/arm-none-eabi-gdb.exe
+bmp_erase.program.cmd.macosx={runtime.tools.arm-none-eabi-gcc.path}/bin/arm-none-eabi-gdb
+
+# Burn bootloader pattern
+bmp_erase.program.burn_pattern.windows={program.cmd}  -quiet --batch -ex "target extended-remote \\.\{serial.port}" -ex "mon tpwr enable" -ex "mon swdp_scan" -ex "att 1" -ex "mon erase_mass" -ex "mon hard_srst" -ex "detach" -ex "echo \nUnlock+Erase complete!\n" -ex "detach" -ex "quit"
+bmp_erase.program.burn_pattern.macosx={program.cmd}   -quiet --batch -ex "target extended-remote {serial.port}" -ex "mon tpwr enable" -ex "mon swdp_scan" -ex "att 1" -ex "mon erase_mass"  -ex "mon hard_srst" -ex "detach" -ex "echo \nUnlock+Erase complete!\n" -ex "detach" -ex "quit"
+
+cmsis-dap.name=ARM CMSIS-DAP compatible
+cmsis-dap.communication=USB
+cmsis-dap.protocol=
+cmsis-dap.program.protocol=
+cmsis-dap.program.tool=openocd
+cmsis-dap.program.tool.default=openocd
+cmsis-dap.program.extra_params=
+
+stlink.name=STMicroelectronics STLINK
+stlink.communication=USB
+stlink.protocol=
+stlink.program.protocol=
+stlink.program.tool=openocd
+stlink.program.tool.default=openocd
+stlink.program.extra_params=
+
+jflash.name=J-Flash for nRF52
+jflash.program.tool=jflash
+jflash.bootloader.tool=sandeepmistry:jflash
+
+jtagicemki.name=JTAG ICE mkI
+jtagicemki.communication=serial
+jtagicemki.protocol=jtagmki
+
+usbtinyisp.name=USBtinyISP
+usbtinyisp.protocol=usbtiny
