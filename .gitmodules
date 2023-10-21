@@ -9,7 +9,7 @@
 	url = https://github.com/platformio/builder-framework-arduino-nrf5.git
 [submodule "libraries/SX126x-Arduino"]
 	path = libraries/SX126x-Arduino
-	url = https://github.com/techsd/SX126x-Arduino/tree/techsd
+	url = https://github.com/techsd/SX126x-Arduino/
 [submodule "libraries/Adafruit_nRFCrypto"]
 	path = libraries/Adafruit_nRFCrypto
 	url = https://github.com/adafruit/Adafruit_nRFCrypto.git
