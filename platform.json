@@ -25,8 +25,7 @@
 	{
 		"framework-arduinocircuitrocksisp4520": [
         {
-          "url": "https://github.com/techsd/Circuitrocks_ISP4520_Arduino/blob/master/download/0.1.1.tar.gz",
-          "sha1": "148A780EED042D7912AA7D8A91700BD0416F0F0A",
+          "url": "https://github.com/techsd/Circuitrocks_ISP4520_Arduino/releases/download/0.1.1/0.1.1.tar.gz",
           "version": "~0.1.1",
           "system": "*"
         }
